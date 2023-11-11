@@ -1,0 +1,74 @@
+<h1 mat-dialog-title>Modificar aula</h1>
+<div mat-dialog-content>
+  <form [formGroup]="formModifyAula" (ngSubmit)="onModifyAula()">
+    <div class="mb-3">
+      <label for="codAula" class="form-label">Código</label>
+      <input
+        type="text"
+        id="codAula"
+        formControlName="codAula"
+        class="form-control"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="fechaHoraRegistro" class="form-label"
+        >Fecha y hora de registro</label
+      >
+      <input
+        type="text"
+        id="fechaHoraRegistro"
+        formControlName="fechaHoraRegistro"
+        class="form-control"
+        required
+      />
+      <div id="indicacion02" class="form-text text-light">
+        Ingresar en este formato: yyyy-MM-dd HH:mm
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="tema" class="form-label">Tema a tratar</label>
+      <input
+        type="text"
+        id="tema"
+        formControlName="tema"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="profesorId" class="form-label">Profesor</label>
+      <select
+        id="profesorId"
+        class="form-select"
+        formControlName="profesorId"
+        required
+      >
+        <option *ngFor="let profe of profesores" value="{{ profe.id }}">
+          {{ profe.id }}: {{ profe.nombreProfesor }}
+          {{ profe.apellidosProfesor }}
+        </option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="materiaId" class="form-label">Materia</label>
+      <select
+        id="materiaId"
+        class="form-select"
+        formControlName="materiaId"
+        required
+      >
+        <option *ngFor="let mat of materias" value="{{ mat.id }}">
+          {{ mat.id }}: {{ mat.nombreMateria }}
+        </option>
+      </select>
+    </div>
+    <div mat-dialog-actions class="d-flex gap-2 p-2">
+      <button type="submit" mat-button mat-dialog-close class="btn btn-success">
+        Modificar
+      </button>
+      <button mat-button mat-dialog-close class="btn btn-secondary">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,91 @@
+<h1>Aulas</h1>
+<button
+  type="button"
+  class="btn btn-success my-2"
+  *ngIf="this.isAdminFlag"
+  [disabled]="loading"
+  (click)="openAgregarAula()"
+>
+  Agregar aula
+</button>
+<div class="mat-elevation-z8 table-responsive">
+  <table mat-table [dataSource]="dataSource" [hidden]="loading">
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>#</th>
+      <td mat-cell *matCellDef="let aula">{{ aula.id }}</td>
+    </ng-container>
+    <ng-container matColumnDef="codAula">
+      <th mat-header-cell *matHeaderCellDef>Código de aula</th>
+      <td mat-cell *matCellDef="let aula">{{ aula.codAula }}</td>
+    </ng-container>
+    <ng-container matColumnDef="fechaHoraRegistro">
+      <th mat-header-cell *matHeaderCellDef>Registrado</th>
+      <td mat-cell *matCellDef="let aula">{{ aula.fechaHoraRegistro }}</td>
+    </ng-container>
+    <ng-container matColumnDef="tema">
+      <th mat-header-cell *matHeaderCellDef>Tema</th>
+      <td mat-cell *matCellDef="let aula">{{ aula.tema }}</td>
+    </ng-container>
+    <ng-container matColumnDef="profesor">
+      <th mat-header-cell *matHeaderCellDef>Profesor</th>
+      <td mat-cell *matCellDef="let aula">
+        <button
+          type="button"
+          class="btn btn-primary my-2"
+          (click)="openProfesor(aula.profesor)"
+        >
+          Ver profesor
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="materia">
+      <th mat-header-cell *matHeaderCellDef>Materia</th>
+      <td mat-cell *matCellDef="let aula">
+        <button
+          type="button"
+          class="btn btn-primary my-2"
+          (click)="openMateria(aula.materia)"
+        >
+          Ver materia
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="modificar">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let aula">
+        <button
+          type="button"
+          *ngIf="this.isAdminFlag"
+          class="btn btn-info my-2"
+          (click)="openModificarAula(aula.id)"
+        >
+          Modificar
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="borrar">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let aula">
+        <button
+          type="button"
+          *ngIf="this.isAdminFlag"
+          class="btn btn-danger my-2"
+          (click)="openBorrarAula(aula.id)"
+        >
+          Eliminar
+        </button>
+      </td>
+    </ng-container>
+  </table>
+  <app-spinner [loading]="this.loading"></app-spinner>
+
+  <mat-paginator
+    [disabled]="loading"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Recorrer páginas"
+  >
+  </mat-paginator>
+</div>

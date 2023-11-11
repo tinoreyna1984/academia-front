@@ -1,0 +1,64 @@
+<h1>Profesores</h1>
+<button
+  type="button"
+  *ngIf="this.isAdminFlag"
+  (click)="openAgregarProfesor()"
+  class="btn btn-success my-2"
+>
+  Agregar profesor
+</button>
+<div class="mat-elevation-z8 table-responsive">
+  <table mat-table [dataSource]="dataSource" [hidden]="loading">
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>#</th>
+      <td mat-cell *matCellDef="let profesor">{{ profesor.id }}</td>
+    </ng-container>
+    <ng-container matColumnDef="nombreProfesor">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let profesor">
+        {{ profesor.nombreProfesor }} {{ profesor.apellidosProfesor }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="correo">
+      <th mat-header-cell *matHeaderCellDef>Correo</th>
+      <td mat-cell *matCellDef="let profesor">{{ profesor.correo }}</td>
+    </ng-container>
+    <ng-container matColumnDef="modificar">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let profesor">
+        <button
+          type="button"
+          class="btn btn-info my-2"
+          *ngIf="this.isAdminFlag"
+          (click)="openModificarProfesor(profesor.id)"
+        >
+          Modificar
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="borrar">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let profesor">
+        <button
+          type="button"
+          class="btn btn-danger my-2"
+          *ngIf="this.isAdminFlag"
+          (click)="openBorrarProfesor(profesor.id)"
+        >
+          Eliminar
+        </button>
+      </td>
+    </ng-container>
+  </table>
+  <app-spinner [loading]="this.loading"></app-spinner>
+
+  <mat-paginator
+    [disabled]="loading"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Recorrer páginas"
+  >
+  </mat-paginator>
+</div>

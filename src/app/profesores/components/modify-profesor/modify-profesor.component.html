@@ -1,0 +1,43 @@
+<h1 mat-dialog-title>Modificar profesor</h1>
+<div mat-dialog-content>
+  <form [formGroup]="formModifyProfesor" (ngSubmit)="onModifyProfesor()">
+    <div class="mb-3">
+      <label for="nombreProfesor" class="form-label">Nombre</label>
+      <input
+        type="text"
+        id="nombreProfesor"
+        formControlName="nombreProfesor"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="apellidosProfesor" class="form-label">Apellidos</label>
+      <input
+        type="text"
+        id="apellidosProfesor"
+        formControlName="apellidosProfesor"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="correo" class="form-label">Correo</label>
+      <input
+        type="email"
+        id="correo"
+        formControlName="correo"
+        class="form-control"
+        required
+      />
+    </div>
+    <div mat-dialog-actions class="d-flex gap-2 p-2">
+      <button type="submit" mat-button mat-dialog-close class="btn btn-success">
+        Modificar
+      </button>
+      <button mat-button mat-dialog-close class="btn btn-secondary">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

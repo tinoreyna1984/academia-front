@@ -1,0 +1,4 @@
+#main-app-component {
+    background: rgb(32,213,208);
+    background: linear-gradient(270deg, rgba(32,213,208,1) 0%, rgba(11,88,179,1) 100%);
+}
