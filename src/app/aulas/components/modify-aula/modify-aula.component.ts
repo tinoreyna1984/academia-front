@@ -40,9 +40,6 @@ export class ModifyAulaComponent {
       profesorId: new FormControl(),
       materiaId: new FormControl(),
     });
-    // se bloquean estos campos solo en actualizacion
-    this.formModifyAula.get('codAula')?.disable();
-    this.formModifyAula.get('fechaHoraRegistro')?.disable();
 
     this.profesoresService.getProfesores().subscribe({
       next: (profesores: Profesor[]) => {
